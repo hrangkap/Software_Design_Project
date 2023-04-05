@@ -1,0 +1,146 @@
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+
+{% block content %}
+{% for student in students %}
+<div class="grey-bg container-fluid">
+  <section id="minimal-statistics">
+    <div class="row">
+      <div class="col-12 mt-3 mb-1">
+        <h4 class="text-uppercase">Recycling Reward System</h4>
+        <p>For Smart and Green Campus</p>
+      </div>
+    </div>
+
+    <div id="menu" style="display: none;">
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="warning"></h3> 
+                  <form method="post">
+                  <div class="form-group row">
+                    <label for="inputPassword" class="col-form-label">Enter Point Value to Transfer</label>
+                    <div class="col-sm-10">
+                      {% csrf_token %}
+                      <input type="text" class="form-control" id="transfer_point" placeholder="Number of Points"><br>
+                      <input type="text" class="form-control" id="receiver_id" placeholder="Receiver: Student ID"><br>
+                      <button type="button" class="btn btn-success" id="student_transfer">Transfer</button>
+                      <button type="button" class="btn btn-warning" id="transfer_cancel">Cancel</button>
+                    </div><br>
+                    
+                  </div>
+                  </form>
+                </div>
+                <div class="align-self-center">
+                  <!-- <i class="icon-pie-chart warning font-large-2 float-right"></i> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="success">{{ student.student_name }}</h3>
+                  <span>{{ student.student_id}}</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-user success font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="warning">{{ student.student_point}}</h3>
+                  <span>Point</span>
+                </div>
+                <div class="align-self-center">
+                  <i class="icon-pie-chart warning font-large-2 float-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-sm-6 col-12">
+        <div class="card">
+          <div class="card-content">
+            <div class="card-body">
+              <div class="media d-flex">
+                <div class="media-body text-left">
+                  <h3 class="warning"></h3>
+                  <span onclick="showMenu()">Transfer Point</span>
+                </div>
+                <div class="align-self-center">
+                  <!-- <i class="icon-pie-chart warning font-large-2 float-right"></i> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+  
+  <section id="stats-subtitle">
+  <div class="row">
+    <div class="col-12 mt-3 mb-1">
+      <h4 class="text-uppercase">TAIST-Tokyo Tech</h4>
+      <p>Artificial Intelligence and Internet of Things #3</p>
+      <button type="button" class="btn btn-success" id="student_logout">Logout</button>
+    </div>
+  </div>
+  {% endfor %}
+  {% endblock %}
+
+  
+
+  <script>
+    document.getElementById("student_logout").onclick = function () {
+        location.href = "/";
+    };
+    document.getElementById("student_transfer").onclick = function () {
+        location.href = "/home";
+    };
+    document.getElementById("transfer_cancel").onclick = function() {
+        menu.style.display = "none";
+    }
+    document.getElementById("transfer_point").onclick = function() {
+       
+    }
+  
+    // JavaScript code
+  function showMenu() {
+  var menu = document.getElementById("menu");
+  if (menu.style.display === "none") {
+    menu.style.display = "block";
+  } else {
+    menu.style.display = "none";
+  }
+}
+
+
+    
+</script>
